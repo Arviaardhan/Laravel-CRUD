@@ -38,4 +38,7 @@ Route::group(["prefix"=>"/student"],function(){
     Route::get('/detail/{student}', [StudentsController::class, 'show']);
     Route::get('/create', [StudentsController::class, 'create']);
     Route::post('/add', [StudentsController::class, 'add']);
+    Route::delete('/delete/{student}', [StudentsController::class, 'destroy']);
+    Route::get('/edit/{student}', [StudentsController::class, 'edit']);
+    Route::post('/update/{student}', [StudentsController::class, 'update']);
 });
