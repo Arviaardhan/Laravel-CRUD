@@ -2,14 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
 class StudentsController extends Controller
 {
+    public function index()
+    {
+        return view ('student.all', [
+            "title" => "Students",
+            "students" => Student::all(),
+        ]);
+    }
+
+    public function show($student)
+    {
+        return view ('student.detail', [
+            'title' => 'detail-student',
+            'student' => Student::find($student)
+        ]);
+    }
+    
     public function create() {
         return view ('student.create', [
             'title' => 'Add Data',
+            'grades' => Kelas::all()
         ]);
     }
 
@@ -18,11 +36,17 @@ class StudentsController extends Controller
             "nis"           => "required|max:255",
             "nama"          => "required|max:255",
             "tanggal_lahir" => "required",
-            "kelas"         => "required",
+            "kelas_id"      => "required",
             "alamat"        => "required",
         ]);
+    
+        $dataNis = Student::where('nis',$validateData['nis'])->first();
+        if ($dataNis) {
+            return back()->withInput()->with('errorNis', 'NIS Siswa sudah terdaftar');
+        }
 
         $result = Student::create($validateData);
+
         if($result) {
             return redirect('/student/all')->with('success', 'Data siswa berhasil ditambahkan');
         }
@@ -32,7 +56,8 @@ class StudentsController extends Controller
     {
         return view('student.edit', [
             'title' => 'Edit Data',
-            'student' => $student
+            'student' => $student,
+            'grades' => Kelas::all(),
         ]);
     }
 
@@ -41,7 +66,7 @@ class StudentsController extends Controller
             "nis"           => "required|max:255",
             "nama"          => "required|max:255",
             "tanggal_lahir" => "required",
-            "kelas"         => "required",
+            "kelas_id"      => "required",
             "alamat"        => "required",
         ]);
 
@@ -58,21 +83,5 @@ class StudentsController extends Controller
         if($result) {
             return redirect('/student/all')->with('success', 'Data berhasil dihapus !');
         }
-    }
-
-    public function index()
-    {
-        return view ('student.all', [
-            "title" => "Students",
-            "students" => Student::all(),
-        ]);
-    }
-
-    public function show($student)
-    {
-        return view ('student.detail', [
-            'title' => 'detail-student',
-            'student' => Student::find($student)
-        ]);
     }
 }
