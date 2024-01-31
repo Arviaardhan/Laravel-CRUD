@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\StudentsController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,16 @@ Route::get('/about', function () {
         "kelas"=> "11 PPLG 2",
         "foto"=> "images/logoUser.jpg"
     ]);
+});
+
+Route::group(["prefix"=>"/grade"], function() {
+    Route::get('/all', [KelasController::class, 'index']);
+    Route::get('/detail/{kelas}', [KelasController::class, 'show']);
+    Route::get('/create', [KelasController::class, 'create']);
+    Route::post('/add', [KelasController::class, 'add']);
+    Route::delete('/delete/{kelas}', [KelasController::class, 'destroy']);
+    Route::get('/edit/{kelas}', [KelasController::class, 'edit']);
+    Route::post('/update/{kelas}', [KelasController::class, 'update']);
 });
 
 Route::group(["prefix"=>"/student"],function(){

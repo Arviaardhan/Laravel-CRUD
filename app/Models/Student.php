@@ -12,7 +12,12 @@ class Student extends Model
         'nis',
         'nama',
         'tanggal_lahir',
-        'kelas',
+        'kelas_id',
         'alamat',
     ];
+
+    public function kelas() 
+    {
+        return $this->belongsTo(Kelas::class);
+    }
 }

@@ -19,7 +19,11 @@
         </div>
         <div class="form-group">
             <label for="kelas" style="margin-bottom: 15px; margin-top: 25px;">Kelas</label>
-            <input type="text" class="form-control" id="kelas" placeholder="Masukkan Kelas" name="kelas" value="{{ old('kelas', $student->kelas) }}" required>
+            <select class="form-select" name="kelas_id">
+                @foreach ($grades as $grade)
+                    <option name="kelas_id" value="{{ $grade->id }}" {{ $grade->id == $student->kelas_id ? 'selected' : ''}}>{{ $grade->kelas_siswa }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="alamat" style="margin-bottom: 15px; margin-top: 25px;">Alamat</label>

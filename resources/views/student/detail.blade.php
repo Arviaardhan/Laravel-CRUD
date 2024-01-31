@@ -18,7 +18,7 @@
             </tr>
             <tr>
                 <th>Kelas</th>
-                <td>{{ $student->kelas }}</td>
+                <td>{{ $student->kelas->kelas_siswa }}</td>
             </tr>
             <tr>
                 <th>Alamat</th>
