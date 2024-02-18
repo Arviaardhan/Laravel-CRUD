@@ -25,12 +25,12 @@
                   <th scope="row">{{ $no++ }}</th>
                   <td>{{ $grade->kelas_siswa }}</td>
                   <td>
-                    <a class="btn btn-primary" href="/grade/detail/{{ $grade->id }}">Detail</a>
-                    <a class="btn btn-warning" href="/grade/edit/{{ $grade->id }}">Edit</a>
+                    <a class="btn btn-primary" href="/grade/detail/{{ $grade->id }}"><b>DETAIL</b></a>
+                    <a class="btn btn-warning" href="/grade/edit/{{ $grade->id }}"><b>EDIT</b></a>
                     <form action="/grade/delete/{{ $grade->id }}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
-                        <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus?')">Delete</button>
+                        <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus?')"><b>DELETE</b></button>
                     </form>
                 </td>
               </tr>

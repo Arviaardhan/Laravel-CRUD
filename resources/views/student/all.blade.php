@@ -32,12 +32,12 @@
                   <td>{{ $student->nama }}</td>
                   <td>{{ $student->kelas->kelas_siswa ?? 'Tidak ada kelas' }}</td>
                   <td>
-                    <a class="btn btn-primary" href="/student/detail/{{ $student->id }}">Detail</a>
-                    <a class="btn btn-warning" href="/student/edit/{{ $student->id }}">Edit</a>
+                    <a class="btn btn-primary" href="/student/detail/{{ $student->id }}"><b>DETAIL</b></a>
+                    <a class="btn btn-warning" href="/student/edit/{{ $student->id }}"><b>EDIT</b></a>
                     <form action="/student/delete/{{ $student->id }}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
-                        <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus?')">Delete</button>
+                        <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus?')"><b>DELETE</b></button>
                     </form>
                 </td>
               </tr>
