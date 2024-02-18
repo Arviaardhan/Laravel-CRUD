@@ -29,7 +29,7 @@
             <label for="alamat" style="margin-bottom: 15px; margin-top: 25px;">Alamat</label>
             <input type="text" class="form-control" id="alamat" placeholder="Masukkan Alamat" name="alamat" value="{{ old('alamat', $student->alamat) }}" required>
         </div>
-        <button type="submit" class="btn btn-warning" style="margin-top: 20px">Edit</button>
+        <button type="submit" class="btn btn-warning" style="margin-top: 20px"><b>EDIT</b></button>
         <a type="button" class="btn btn-secondary" style="margin-top: 20px; margin-left: 20px;" onclick="kembali()">Kembali</a>
     </form>
     </div>

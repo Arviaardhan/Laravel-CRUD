@@ -1,0 +1,36 @@
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin: auto;
+    border: 1px solid #ccc; /* Menambah border */
+    border-radius: 5px; /* Menambah border-radius untuk sudut yang lebih lembut */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Menambah bayangan */
+  }
+  
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
+  
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+  
+  .form-signin input[type="username"],
+  .form-signin input[type="email"],
+  .form-signin input[type="password"] {
+    margin-bottom: 15px;
+    width: 100%; /* Memastikan input mengisi lebar container */
+    padding: 10px; /* Menambah padding */
+    border: 1px solid #ccc; /* Menambah border */
+    border-radius: 5px; /* Menambah border-radius untuk sudut yang lebih lembut */
+    box-sizing: border-box; /* Menghitung padding dan border ke dalam lebar dan tinggi total */
+  }
+  
+  /* Ubah border-radius untuk tampilan yang lebih baik */
+  .form-signin input[type="username"],
+  .form-signin input[type="email"],
+  .form-signin input[type="password"] {
+    border-radius: 5px;
+  }
+  

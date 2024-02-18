@@ -6,9 +6,9 @@
     <form method="post" action="/student/add">
         @csrf
 
-        @if(session('error'))
+        @if(session('errorNis'))
             <div class="alert alert-danger" role="alert">
-                {{ session('error') }}
+                {{ session('errorNis') }}
             </div>
         @endif
 
@@ -17,11 +17,7 @@
             <input type="number" class="form-control" id="nis" placeholder="Masukkan NIS" name="nis" value="{{ old('nis') }}" required>
         </div>
 
-        @error('nis')
-            <div class="alert alert-danger" role="alert">
-                {{ $message }}
-            </div>
-        @enderror
+
 
         <div class="form-group">
             <label for="nama" style="margin-bottom: 15px; margin-top: 25px;">Nama</label>

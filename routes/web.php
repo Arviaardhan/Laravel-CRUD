@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\StudentsController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +36,16 @@ Route::get('/about', function () {
     ]);
 });
 
+Route::group(['prefix' => '/login'], function () {
+    Route::get('/index', [LoginController::class, 'index'])->name('login.index');
+    Route::post('/index', [LoginController::class, 'login'])->name('login.submit');
+});
+
+Route::group(['prefix' => '/register'], function () {
+    Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+});
+
 Route::group(["prefix"=>"/grade"], function() {
     Route::get('/all', [KelasController::class, 'index']);
     Route::get('/detail/{kelas}', [KelasController::class, 'show']);
@@ -44,7 +56,7 @@ Route::group(["prefix"=>"/grade"], function() {
     Route::post('/update/{kelas}', [KelasController::class, 'update']);
 });
 
-Route::group(["prefix"=>"/student"],function(){
+Route::group(["prefix"=>"/student"],function() {
     Route::get('/all', [StudentsController::class, 'index']);
     Route::get('/detail/{student}', [StudentsController::class, 'show']);
     Route::get('/create', [StudentsController::class, 'create']);
