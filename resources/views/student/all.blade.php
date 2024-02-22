@@ -1,14 +1,8 @@
 @extends('layouts.main')
 
 @section('container')
-    <h1 style="text-align: center; margin-bottom: 30px;">Ini adalah halaman students</h1>
-    @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert" style="max-width: 400px; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-    <a type="button" class="btn btn-success" href="/student/create" style="margin-left: 150px; margin-bottom: 20px;">ADD</a>
+    <h1 style="text-align: center; margin-bottom: 50px;">Ini adalah halaman students</h1>
+    {{-- <a type="button" class="btn btn-success" href="/student/create" style="margin-left: 150px; margin-bottom: 20px;">ADD</a> --}}
 <div style="display: flex; align-item: center; justify-content:center;">
 
 
@@ -33,12 +27,6 @@
                   <td>{{ $student->kelas->kelas_siswa ?? 'Tidak ada kelas' }}</td>
                   <td>
                     <a class="btn btn-primary" href="/student/detail/{{ $student->id }}"><b>DETAIL</b></a>
-                    <a class="btn btn-warning" href="/student/edit/{{ $student->id }}"><b>EDIT</b></a>
-                    <form action="/student/delete/{{ $student->id }}" method="post" class="d-inline">
-                        @method('delete')
-                        @csrf
-                        <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus?')"><b>DELETE</b></button>
-                    </form>
                 </td>
               </tr>
           @endforeach

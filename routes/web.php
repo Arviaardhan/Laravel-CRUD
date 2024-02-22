@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -37,13 +38,41 @@ Route::get('/about', function () {
 });
 
 Route::group(['prefix' => '/login'], function () {
-    Route::get('/index', [LoginController::class, 'index'])->name('login.index');
-    Route::post('/index', [LoginController::class, 'login'])->name('login.submit');
+    Route::get('/index', [LoginController::class, 'index'])->name('login');
+    Route::post('/index', [LoginController::class, 'login'])->name('login');
 });
 
+Route::get('/dashboard/all', [DashboardController::class, 'all'])->name('dashboard');
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 Route::group(['prefix' => '/register'], function () {
-    Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
-    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+    Route::get('/register', [RegisterController::class, 'index'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register');
+});
+
+Route::group(['prefix' => '/dashboard'], function () {
+    Route::group(['prefix' => '/all'], function () {
+        Route::get('/all', [DashboardController::class, 'all'])->name('dashboard.all.all');
+    });
+    Route::group(['prefix' => '/grade'], function () {
+        Route::get('/all', [DashboardController::class, 'gradeAll'])->name('dashboard.grade.all');
+        Route::get('/detail/{kelas}', [DashboardController::class, 'gradeShow']);
+        Route::get('/create', [DashboardController::class, 'gradeCreate']);
+        Route::post('/add', [DashboardController::class, 'gradeAdd']);
+        Route::delete('/delete/{kelas}', [DashboardController::class, 'gradeDestroy']);
+        Route::get('/edit/{kelas}', [DashboardController::class, 'gradeEdit']);
+        Route::post('/update/{kelas}', [DashboardController::class, 'gradeUpdate']);
+    });
+    Route::group(['prefix' => '/student'], function () {
+        Route::get('/all', [DashboardController::class, 'studentAll'])->name('dashboard.student.all');
+        Route::get('/detail/{student}', [DashboardController::class, 'studentShow']);
+        Route::get('/create', [DashboardController::class, 'studentCreate']);
+        Route::post('/add', [DashboardController::class, 'studentAdd']);
+        Route::delete('/delete/{student}', [DashboardController::class, 'studentDestroy']);
+        Route::get('/edit/{student}', [DashboardController::class, 'studentEdit']);
+        Route::post('/update/{student}', [DashboardController::class, 'studentUpdate']);
+    });
 });
 
 Route::group(["prefix"=>"/grade"], function() {
