@@ -20,9 +20,26 @@ class DashboardController extends Controller
 
     public function studentAll()
     {
+        $students = Student::paginate(5);
+
         return view ('dashboard.student.all', [
             "title" => "Students",
-            "students" => Student::all(),
+            "students" => $students,
+        ]);
+    }
+
+
+    public function studentSearch(Request $request)
+    {
+        $search = $request->input('search');
+
+        $students = Student::where('nama', 'LIKE', "%$search%")
+                           ->orWhere('nis', 'LIKE', "%$search%")
+                           ->paginate(5); // Mengatur pagination menjadi 5
+
+        return view('dashboard.student.all', [
+            'title' => 'Students',
+            'students' => $students,
         ]);
     }
 
@@ -100,6 +117,19 @@ class DashboardController extends Controller
         return view ('dashboard.grade.all', [
             "title" => "Grades",
             "grades" => Kelas::all(),
+        ]);
+    }
+
+    public function gradeSearch(Request $request)
+    {
+        $search = $request->input('search');
+
+        $kelas = Kelas::where('kelas_siswa', 'LIKE', "%$search%")
+                           ->get();
+
+        return view('dashboard.grade.all', [
+            'title' => 'Grades',
+            'grades' => $kelas,
         ]);
     }
 

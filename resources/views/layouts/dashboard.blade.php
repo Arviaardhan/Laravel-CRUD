@@ -57,7 +57,7 @@
     }
 
     .nav-link {
-      color: #333A73;
+      color: #200E3A;
     }
 
     .nav-item .active, .nav-link:hover {
@@ -66,6 +66,18 @@
 
     .text-sidebar {
         font-weight: bold;
+    }
+
+    .text-sidebar-out {
+        font-weight: bold;
+        color: red;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .text-sidebar-out:hover {
+        color: #B80000;
     }
 
     .btn-bd-primary {
@@ -137,9 +149,11 @@
                         <li class="nav-item">
                             <form action="/logout" method="POST">
                                 @csrf
-                                <button type="submit" class="nav-link d-flex align-items-center gap-2">
-                                    <i class="fas fa-door-closed"></i>
-                                    <div class="text-sidebar">Log Out</div>
+                                <button type="submit" class="nav-link d-flex align-items-center gap-2" style="margin-left: 5px">
+                                    <div class="text-sidebar-out">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        <div class="text-sidebar-out" style="margin-bottom: 2px">Log Out</div>
+                                    </div>
                                 </button>
                             </form>
                         </li>
