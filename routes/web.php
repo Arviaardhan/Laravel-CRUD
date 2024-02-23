@@ -57,6 +57,7 @@ Route::group(['prefix' => '/dashboard'], function () {
     });
     Route::group(['prefix' => '/grade'], function () {
         Route::get('/all', [DashboardController::class, 'gradeAll'])->name('dashboard.grade.all');
+        Route::get('/search', [DashboardController::class, 'gradeSearch'])->name('dashboard.grade.all');
         Route::get('/detail/{kelas}', [DashboardController::class, 'gradeShow']);
         Route::get('/create', [DashboardController::class, 'gradeCreate']);
         Route::post('/add', [DashboardController::class, 'gradeAdd']);
@@ -66,6 +67,7 @@ Route::group(['prefix' => '/dashboard'], function () {
     });
     Route::group(['prefix' => '/student'], function () {
         Route::get('/all', [DashboardController::class, 'studentAll'])->name('dashboard.student.all');
+        Route::get('/search', [DashboardController::class, 'studentSearch'])->name('dashboard.student.all');
         Route::get('/detail/{student}', [DashboardController::class, 'studentShow']);
         Route::get('/create', [DashboardController::class, 'studentCreate']);
         Route::post('/add', [DashboardController::class, 'studentAdd']);

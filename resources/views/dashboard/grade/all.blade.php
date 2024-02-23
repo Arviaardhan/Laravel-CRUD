@@ -1,11 +1,22 @@
 @extends('layouts.dashboard')
 
 @section('container')
-    <h1 style="text-align: center; margin-bottom: 30px; margin-top: 70px;">Ini adalah halaman kelas</h1>
+    <div style="text-align: center; margin-bottom: 20px; margin-top: 5%;">
+        <form action="/dashboard/grade/search" method="GET">
+            <input type="text" name="search" placeholder="Search..." style="
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 20px;
+            padding-right: 20px;">
+            <button type="submit" class="btn btn-primary" style="margin-bottom: 5px"><i class='fas fa-search'></i></button>
+        </form>
+    </div>
     @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert" style="max-width: 400px; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="alert alert-success alert-dismissible fade show" role="alert" style="max-width: 600px; text-align: center;">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         </div>
     @endif
     <a type="button" class="btn btn-success" href="/dashboard/grade/create" style="margin-left: 180px; margin-bottom: 20px;">ADD</a>
@@ -25,12 +36,12 @@
                   <th scope="row">{{ $no++ }}</th>
                   <td>{{ $grade->kelas_siswa }}</td>
                   <td>
-                    <a class="btn btn-primary" href="/dashboard/grade/detail/{{ $grade->id }}"><b>DETAIL</b></a>
-                    <a class="btn btn-warning" href="/dashboard/grade/edit/{{ $grade->id }}"><b>EDIT</b></a>
+                    <a class="btn btn-info" href="/dashboard/grade/detail/{{ $grade->id }}"><b><i class='fas fa-info'></i></b></a>
+                    <a class="btn btn-warning" href="/dashboard/grade/edit/{{ $grade->id }}"><b><i class="fa fa-edit"></i></b></a>
                     <form action="/dashboard/grade/delete/{{ $grade->id }}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
-                        <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus?')"><b>DELETE</b></button>
+                        <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus?')"><b><i class='fas fa-trash'></i></b></button>
                     </form>
                 </td>
               </tr>

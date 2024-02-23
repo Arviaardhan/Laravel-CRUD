@@ -15,8 +15,8 @@
             <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js"></script>
         </head>  
 <body>
-    <section class="bg-gray-50 dark:bg-gray-900">
-        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <section>
+        <div class="flex flex-col items-center justify-center">
             <div class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
                 Register
             </div>
