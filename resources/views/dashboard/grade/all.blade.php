@@ -1,6 +1,14 @@
 @extends('layouts.dashboard')
 
 @section('container')
+
+    <style>
+        .table-head {
+            background-color: #200E3A !important;
+            color: white !important;
+        }
+    </style>
+
     <div style="text-align: center; margin-bottom: 20px; margin-top: 5%;">
         <form action="/dashboard/grade/search" method="GET">
             <input type="text" name="search" placeholder="Search..." style="
@@ -23,9 +31,9 @@
 <div style="display: flex; align-item: center; justify-content:center;">
     <table class="table table-bordered" style="text-align: center; width: 1000px; ">
       <thead>
-          <th>NO</th>
-          <th>Kelas</th>
-          <th>Action</th>
+          <th class="table-head">NO</th>
+          <th class="table-head">Kelas</th>
+          <th class="table-head">Action</th>
       </thead>
       <tbody>
             @php

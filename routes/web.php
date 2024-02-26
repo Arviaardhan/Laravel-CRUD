@@ -38,7 +38,7 @@ Route::get('/about', function () {
 });
 
 Route::group(['prefix' => '/login'], function () {
-    Route::get('/index', [LoginController::class, 'index'])->name('login');
+    Route::get('/index', [LoginController::class, 'index'])->name('login.index');
     Route::post('/index', [LoginController::class, 'login'])->name('login');
 });
 
@@ -95,4 +95,8 @@ Route::group(["prefix"=>"/student"],function() {
     Route::delete('/delete/{student}', [StudentsController::class, 'destroy']);
     Route::get('/edit/{student}', [StudentsController::class, 'edit']);
     Route::post('/update/{student}', [StudentsController::class, 'update']);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 });

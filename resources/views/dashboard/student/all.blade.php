@@ -1,6 +1,14 @@
 @extends('layouts.dashboard')
 
 @section('container')
+
+    <style>
+        .table-head {
+            background-color: #200E3A !important;
+            color: white !important;
+        }
+    </style>
+
     <div style="text-align: center; margin-bottom: 20px; margin-top: 5%;">
         <form action="/dashboard/student/search" method="GET">
             <input type="text" name="search" placeholder="Search..." style="
@@ -24,14 +32,14 @@
         @if($students->isEmpty())
             <p>Tidak ada data</p>
         @else
-            <table class="table table-bordered" style="text-align: center; width: 1000px; ">
+            <table class="table table-bordered" style="text-align: center; width: 1000px;">
                 <thead>
-                    <th>NO</th>
-                    <th>NIS</th>
-                    <th>Nama</th>
-                    <th>Kelas</th>
-                    <th>Action</th>
-                </thead>
+                    <th class="table-head">NO</th>
+                    <th class="table-head">NIS</th>
+                    <th class="table-head">Nama</th>
+                    <th class="table-head">Kelas</th>
+                    <th class="table-head">Action</th>
+                </thead>                
                 <tbody>
                     @php
                         $no = ($students->currentPage() - 1) * $students->perPage() + 1;
