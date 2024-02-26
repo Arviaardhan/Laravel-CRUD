@@ -15,7 +15,7 @@
 
 <div class="row">
 
-  <div class="col-md-6" style="margin-top: 70px">
+  <div class="col-md-6" style="margin-top: 50px">
       <div class="card">
           <div class="card-header">
               <h5 class="card-title">Latest Orders</h5>

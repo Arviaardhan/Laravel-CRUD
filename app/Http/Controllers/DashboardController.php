@@ -9,9 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function all()
     {
-        if(!Auth::check()) return redirect()->route('student.all');
 
         return view('dashboard.all.all', [
             "title" => "Dashboard"
@@ -20,6 +24,7 @@ class DashboardController extends Controller
 
     public function studentAll()
     {
+
         $students = Student::paginate(5);
 
         return view ('dashboard.student.all', [
@@ -31,6 +36,7 @@ class DashboardController extends Controller
 
     public function studentSearch(Request $request)
     {
+
         $search = $request->input('search');
 
         $students = Student::where('nama', 'LIKE', "%$search%")
@@ -45,20 +51,23 @@ class DashboardController extends Controller
 
     public function studentShow($student)
     {
+
         return view ('dashboard.student.detail', [
             'title' => 'detail-student',
             'student' => Student::find($student)
         ]);
     }
     
-    public function studentCreate() {
+    public function studentCreate() 
+    {
         return view ('dashboard.student.create', [
             'title' => 'Add Data',
             'grades' => Kelas::all()
         ]);
     }
 
-    public function studentAdd(Request $request) {
+    public function studentAdd(Request $request) 
+    {
         $validateData = $request->validate([
             "nis"           => "required|max:255",
             "nama"          => "required|max:255",
@@ -88,7 +97,8 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function studentUpdate(Request $request, Student $student) {
+    public function studentUpdate(Request $request, Student $student) 
+    {
         $validateData = $request->validate([
             "nis"           => "required|max:255",
             "nama"          => "required|max:255",
@@ -133,14 +143,16 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function gradeCreate() {
+    public function gradeCreate() 
+    {
         return view ('dashboard.grade.create', [
             'title' => 'Add Data',
             'grades' => Kelas::all()
         ]);
     }
 
-    public function gradeAdd(Request $request) {
+    public function gradeAdd(Request $request) 
+    {
         $validateData = $request->validate([
             "kelas_siswa" => "required"
         ]);
@@ -159,7 +171,8 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function gradeUpdate(Request $request, Kelas $kelas) {
+    public function gradeUpdate(Request $request, Kelas $kelas) 
+    {
         $validateData = $request->validate([
             "kelas_siswa" => "required",
         ]);
